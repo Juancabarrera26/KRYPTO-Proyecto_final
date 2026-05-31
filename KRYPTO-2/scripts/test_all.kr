@@ -1,0 +1,76 @@
+/* test_all.kr - KRYPTO full feature test */
+
+// --- ARITHMETIC & VARIABLES ---
+num x = 10;
+num y = 3;
+kprint(x + y);
+kprint(x - y);
+kprint(x * y);
+kprint(x / y);
+kprint(x % y);
+kprint(x ^ 2);
+
+// --- BOOLEAN ---
+logic flag = sisas;
+krif (flag) {
+    kprint("flag es sisas");
+} krelse {
+    kprint("flag es nokas");
+} stop
+
+// --- WHILE ---
+num i = 0;
+krloop (i < 3) {
+    kprint(i);
+    i = i + 1;
+} stop
+
+// --- FOR ---
+krfor (num j = 0; j < 4; j = j + 1) {
+    kprint(j);
+} stop
+
+// --- FUNCTIONS ---
+krfunc suma(a, b) {
+    yield a + b;
+} stop
+
+kprint(suma(5, 7));
+
+// --- RECURSION (factorial) ---
+krfunc fact(n) {
+    krif (n <= 1) {
+        yield 1;
+    } krelse {
+        yield n * fact(n - 1);
+    } stop
+} stop
+
+kprint(fact(6));
+
+// --- MATH BUILTINS ---
+kprint(sqrt(16));
+kprint(sin(0));
+kprint(cos(0));
+kprint(factorial(5));
+kprint(gcd(48, 18));
+kprint(taylor_exp(1));
+
+// --- LISTS ---
+chain nums = [10, 3, 7, 1, 9, 4];
+kprint(nums);
+kprint(bubble_sort(nums));
+kprint(nums[2]);
+
+// --- MATRICES ---
+grid A = [[1, 2], [3, 4]];
+grid B = [[5, 6], [7, 8]];
+kprint(mat_add(A, B));
+kprint(mat_mul(A, B));
+kprint(transpose(A));
+kprint(determinant(A));
+
+// --- FILES ---
+kwrite("scripts/output.txt", "KRYPTO file test\n");
+text contenido = kread("scripts/output.txt");
+kprint(contenido);

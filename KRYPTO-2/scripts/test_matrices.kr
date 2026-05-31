@@ -1,0 +1,32 @@
+/* test_matrices.kr
+   Prueba del módulo KRYPTOMATRIX.
+*/
+
+grid A = [[1, 2], [3, 4]];
+grid B = [[5, 6], [7, 8]];
+grid I = [[1, 0], [0, 1]];
+
+kprint("Suma:");
+kprint(mat_add(A, B));
+
+kprint("Resta:");
+kprint(mat_sub(B, A));
+
+kprint("Multiplicacion:");
+kprint(mat_mul(A, B));
+
+kprint("Escalar x3:");
+kprint(mat_scalar(A, 3));
+
+kprint("Transpuesta de A:");
+kprint(transpose(A));
+
+kprint("Determinante de A:");
+kprint(determinant(A));
+
+kprint("Inversa de A:");
+kprint(inverse(A));
+
+// Verificar A * A^-1 ≈ I
+kprint("A * inv(A) debe ser identidad:");
+kprint(mat_mul(A, inverse(A)));

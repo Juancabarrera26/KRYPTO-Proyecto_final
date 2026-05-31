@@ -1,0 +1,60 @@
+// eda_data.kr — Análisis exploratorio completo
+// Uso: python3 main.py scripts/eda_data.kr
+
+// ── 1. Convertir Excel a CSV y cargar ─────────────────────────────────────
+kexcel_to_csv("scripts/data.xlsx", "scripts/data.csv");
+chain ds = kload("scripts/data.csv");
+
+// ── 2. Dimensiones y columnas ─────────────────────────────────────────────
+kprint("=== SHAPE ===");
+kprint(kshape(ds));
+
+kprint("=== COLUMNAS ===");
+kprint(kcolumns(ds));
+
+// ── 3. Primeras filas ─────────────────────────────────────────────────────
+kprint("=== HEAD ===");
+khead(ds, 5);
+
+// ── 4. Nulos por columna ──────────────────────────────────────────────────
+kprint("=== NULOS ===");
+knulls(ds);
+
+// ── 5. Estadísticas descriptivas — todas las variables numéricas ──────────
+kprint("=== DESCRIBE ===");
+kdescribe(ds);
+
+// ── 6. Frecuencias — variables categóricas ────────────────────────────────
+kprint("=== FRECUENCIAS: nivel_edu ===");
+kfreq(ds, "nivel_edu");
+
+kprint("=== FRECUENCIAS: sex ===");
+kfreq(ds, "sex");
+
+// ── 7. Boxplot — todas las variables numéricas ────────────────────────────
+kboxplot_all(ds);
+
+// ── 8. Boxplot individual por variable de interés ────────────────────────
+kboxplot(ds, "edad");
+kboxplot(ds, "ingreso_mensual");
+kboxplot(ds, "anios_esc");
+
+// ── 9. Histogramas ────────────────────────────────────────────────────────
+kprint("=== HISTOGRAMA: edad ===");
+khistogram(ds, "edad", 10);
+
+kprint("=== HISTOGRAMA: ingreso_mensual ===");
+khistogram(ds, "ingreso_mensual", 10);
+
+kprint("=== HISTOGRAMA: anios_esc ===");
+khistogram(ds, "anios_esc", 10);
+
+// ── 10. Correlación de Pearson ────────────────────────────────────────────
+kprint("=== CORRELACION ===");
+kcorr(ds);
+
+// ── 11. Análisis por subconjunto — variables clave ────────────────────────
+kprint("=== SUBCONJUNTO: edad, ingreso_mensual, anios_esc ===");
+chain sub = kselect(ds, ["edad", "ingreso_mensual", "anios_esc"]);
+kdescribe(sub);
+kboxplot_all(sub);

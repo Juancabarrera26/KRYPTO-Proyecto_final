@@ -1,0 +1,147 @@
+/* test_dl.kr
+   Modulo de Deep Learning — KRYPTODL
+   Prueba completa: creacion, entrenamiento, prediccion, evaluacion.
+*/
+
+// -----------------------------------------------------------------------
+// TEST 1: clasificacion binaria (XOR aproximado con red 2-8-1)
+// -----------------------------------------------------------------------
+kprint("=== TEST 1: Clasificacion binaria (XOR) ===");
+
+chain Xxor = [[0, 0], [0, 1], [1, 0], [1, 1]];
+chain yxor = [0, 1, 1, 0];
+
+// Crear modelo: 2 entradas, capa oculta de 8 neuronas, 1 salida
+num modelo_xor = dl_create([2, 8, 1], 0.1, 5000);
+
+kprint("Resumen del modelo XOR:");
+dl_summary(modelo_xor);
+
+// Entrenar
+dl_train(modelo_xor, Xxor, yxor);
+
+// Predecir
+chain preds_xor = dl_predict(modelo_xor, Xxor);
+kprint("Predicciones XOR [0,1,1,0]:");
+kprint(preds_xor);
+
+// Evaluar
+dec acc_xor = dl_evaluate(modelo_xor, Xxor, yxor);
+kprint("Accuracy XOR:");
+kprint(acc_xor);
+
+// Loss final
+dec loss_xor = dl_loss(modelo_xor, Xxor, yxor);
+kprint("Loss final XOR:");
+kprint(loss_xor);
+
+
+// -----------------------------------------------------------------------
+// TEST 2: clasificacion lineal sencilla (AND logico)
+// -----------------------------------------------------------------------
+kprint("=== TEST 2: Clasificacion lineal (AND logico) ===");
+
+chain Xand = [[0, 0], [0, 1], [1, 0], [1, 1]];
+chain yand = [0, 0, 0, 1];
+
+num modelo_and = dl_create([2, 4, 1], 0.05, 2000);
+dl_train(modelo_and, Xand, yand);
+
+chain preds_and = dl_predict(modelo_and, Xand);
+kprint("Predicciones AND [0,0,0,1]:");
+kprint(preds_and);
+
+dec acc_and = dl_evaluate(modelo_and, Xand, yand);
+kprint("Accuracy AND:");
+kprint(acc_and);
+
+
+// -----------------------------------------------------------------------
+// TEST 3: regresion con salida sigmoid (clasificacion de notas)
+// -----------------------------------------------------------------------
+kprint("=== TEST 3: Clasificacion de notas (aprobado/reprobado) ===");
+
+// [horas_estudio, horas_sueño] -> 0=reprobado, 1=aprobado
+chain Xnotas = [[1, 4], [2, 5], [1, 3], [7, 7], [8, 8], [9, 7], [3, 5], [6, 6]];
+chain ynotas = [0, 0, 0, 1, 1, 1, 0, 1];
+
+num modelo_notas = dl_create([2, 6, 4, 1], 0.05, 3000);
+dl_train(modelo_notas, Xnotas, ynotas);
+
+chain preds_notas = dl_predict(modelo_notas, Xnotas);
+kprint("Predicciones notas:");
+kprint(preds_notas);
+kprint("Etiquetas reales:");
+kprint(ynotas);
+
+dec acc_notas = dl_evaluate(modelo_notas, Xnotas, ynotas);
+kprint("Accuracy notas:");
+kprint(acc_notas);
+
+
+// -----------------------------------------------------------------------
+// TEST 4: probabilidades brutas (dl_proba)
+// -----------------------------------------------------------------------
+kprint("=== TEST 4: Probabilidades de salida ===");
+
+chain Xq = [[1, 4], [8, 8]];
+chain probs = dl_proba(modelo_notas, Xq);
+kprint("Probabilidad [1 hora estudio, 4 horas sueno]:");
+kprint(probs[0]);
+kprint("Probabilidad [8 horas estudio, 8 horas sueno]:");
+kprint(probs[1]);
+
+
+// -----------------------------------------------------------------------
+// TEST 5: historial de perdida durante entrenamiento
+// -----------------------------------------------------------------------
+kprint("=== TEST 5: Historial de perdida ===");
+
+chain historial = dl_loss_history(modelo_notas);
+kprint("Loss en distintos puntos del entrenamiento:");
+kprint(historial);
+
+
+// -----------------------------------------------------------------------
+// TEST 6: guardar y restaurar pesos
+// -----------------------------------------------------------------------
+kprint("=== TEST 6: Serializacion de pesos ===");
+
+chain pesos_guardados = dl_save_weights(modelo_and);
+kprint("Numero de valores serializados:");
+kprint(pesos_guardados[0]);   // primer elemento es n_layers
+
+// Restaurar en nuevo modelo
+num modelo_and2 = dl_load_weights([2, 4, 1], pesos_guardados);
+chain preds_and2 = dl_predict(modelo_and2, Xand);
+kprint("Predicciones del modelo restaurado:");
+kprint(preds_and2);
+
+// Verificar que coinciden con el original
+kprint("Son identicas a las predicciones originales:");
+kprint(preds_and2 == preds_and);
+
+
+// -----------------------------------------------------------------------
+// TEST 7: arquitectura profunda (2-16-8-4-1)
+// -----------------------------------------------------------------------
+kprint("=== TEST 7: Red profunda 4 capas ===");
+
+chain Xcirc = [[0, 0], [1, 0], [0, 1], [1, 1],
+               [0, 2], [2, 0], [2, 2], [1, 2]];
+chain ycirc = [0, 0, 0, 1, 0, 0, 1, 1];
+
+num modelo_deep = dl_create([2, 16, 8, 4, 1], 0.03, 3000);
+
+kprint("Resumen red profunda:");
+dl_summary(modelo_deep);
+
+dl_train(modelo_deep, Xcirc, ycirc);
+
+chain preds_deep = dl_predict(modelo_deep, Xcirc);
+kprint("Predicciones red profunda:");
+kprint(preds_deep);
+
+dec acc_deep = dl_evaluate(modelo_deep, Xcirc, ycirc);
+kprint("Accuracy red profunda:");
+kprint(acc_deep);

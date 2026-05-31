@@ -1,0 +1,40 @@
+/* test_math.kr
+   Prueba del módulo KRYPTOMATH.
+*/
+
+// Trigonometría
+kprint(sin(0));
+kprint(cos(0));
+kprint(tan(0));
+kprint(sin(3));        // ~sin(pi) ≈ 0
+kprint(asin(1));       // pi/2
+kprint(acos(1));       // 0
+kprint(atan(1));       // pi/4
+
+// Exponencial y logaritmo
+kprint(exp(1));        // e
+kprint(ln(1));         // 0
+kprint(log(100, 10));  // 2
+kprint(log(8, 2));     // 3
+
+// Potencias y raíces
+kprint(sqrt(144));
+kprint(pow(2, 10));
+
+// Factorial y MCD
+kprint(factorial(10));
+kprint(gcd(120, 45));
+kprint(gcd_r(120, 45));
+
+// Taylor para e^x
+kprint(taylor_exp(1, 20));
+kprint(taylor_exp(2, 20));
+
+// Ordenamiento
+chain datos = [5, 2, 8, 1, 9, 3];
+kprint(bubble_sort(datos));
+
+// Estadística
+chain muestra = [4, 7, 2, 9, 1, 5];
+kprint(mean(muestra));
+kprint(std_dev(muestra));

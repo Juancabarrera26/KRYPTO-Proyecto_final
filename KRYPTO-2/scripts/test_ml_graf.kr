@@ -1,0 +1,46 @@
+/* test_ml_graf.kr */
+
+// --- ASCII CHART ---
+k_title("Funcion cuadratica");
+k_xlabel("x");
+k_ylabel("y");
+chain xs = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
+chain ys = [16, 9, 4, 1, 0, 1, 4, 9, 16];
+k_plot(xs, ys);
+k_show();
+
+// --- LINEAR REGRESSION ---
+// y = 2x + 1  with tiny noise
+chain Xtrain = [[0], [1], [2], [3], [4]];
+chain ytrain = [1, 3, 5, 7, 9];
+chain w = lin_train(Xtrain, ytrain, 0.05, 2000);
+kprint("LR weights (bias, slope):");
+kprint(w);
+chain Xtest = [[5], [6]];
+chain preds = lin_predict(Xtest, w);
+kprint("predictions x=5,6:");
+kprint(preds);
+
+// --- LOGISTIC REGRESSION ---
+chain Xl = [[0], [1], [2], [8], [9], [10]];
+chain yl = [0, 0, 0, 1, 1, 1];
+chain wl = log_train(Xl, yl, 0.5, 1000);
+chain cl = log_predict(Xl, wl);
+kprint("log predictions:");
+kprint(cl);
+kprint("accuracy:");
+kprint(accuracy(yl, cl));
+
+// --- KNN ---
+chain Xknn = [[1, 1], [2, 2], [8, 8], [9, 9]];
+chain yknn = [0, 0, 1, 1];
+chain Xq   = [[1, 2], [8, 7]];
+chain kpred = knn(Xknn, yknn, Xq, 2);
+kprint("knn predictions:");
+kprint(kpred);
+
+// --- K-MEANS ---
+chain pts = [[1, 1], [1, 2], [2, 1], [8, 8], [9, 8], [8, 9]];
+chain km_result = kmeans(pts, 2);
+kprint("kmeans labels:");
+kprint(km_result);
