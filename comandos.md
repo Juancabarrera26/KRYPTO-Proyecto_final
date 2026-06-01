@@ -281,35 +281,6 @@ Si ambos comandos ejecutan correctamente y generan resultados similares a los mo
 
 ---
 
-# Posibles preguntas del profesor
-
-## Dataset
-
-* ¿Cuántas filas tiene el dataset?
-* ¿Cuántas columnas tiene?
-* ¿Qué representa cada variable?
-* ¿Existen valores nulos?
-* ¿Qué variable tiene mayor dispersión?
-
----
-
-## Estadística
-
-* ¿Qué representa la media?
-* ¿Qué representa la mediana?
-* ¿Qué representa la desviación estándar?
-* ¿Qué información aporta un boxplot?
-
----
-
-## Correlación
-
-* ¿Qué es una correlación positiva?
-* ¿Qué es una correlación negativa?
-* ¿Qué significa una correlación cercana a cero?
-
----
-
 # Variables que deben conocerse
 
 Variables observadas en la demostración:
