@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Ejecutar el análisis exploratorio de datos (EDA) y las gráficas del dataset para la sustentación.
+Ejecutar el análisis exploratorio de datos (EDA) y las gráficas utilizadas en la demostración del proyecto KRYPTO.
 
 ---
 
@@ -20,10 +20,10 @@ cd ~/KRYPTO-Proyecto_final
 source .venv/bin/activate
 ```
 
-Verificar que aparezca algo similar a:
+Debe aparecer algo similar a:
 
 ```text
-(.venv) usuario@ubuntu:~/KRYPTO-Proyecto_final$
+(.venv) vboxuser@ubuntu:~/KRYPTO-Proyecto_final$
 ```
 
 ---
@@ -34,7 +34,7 @@ Verificar que aparezca algo similar a:
 ls scripts
 ```
 
-Debe aparecer algo parecido a:
+Deben existir archivos similares a:
 
 ```text
 data.csv
@@ -51,7 +51,7 @@ test_ml_graf.kr
 
 ---
 
-# 4. Ejecutar Análisis Exploratorio Completo (EDA)
+# 4. Ejecutar Análisis Exploratorio de Datos (EDA)
 
 ```bash
 python3 main.py scripts/eda_data.kr
@@ -59,13 +59,12 @@ python3 main.py scripts/eda_data.kr
 
 ---
 
-## Salidas esperadas
+## Resultados esperados
 
-### Shape
+### SHAPE
 
 ```text
 === SHAPE ===
-(10280, 6)
 ```
 
 Muestra:
@@ -75,13 +74,13 @@ Muestra:
 
 ---
 
-### Columns
+### COLUMNS
 
 ```text
 === COLUMNS ===
 ```
 
-Variables del dataset:
+Variables observadas en el video:
 
 ```text
 id
@@ -94,7 +93,7 @@ anios_esc
 
 ---
 
-### Head
+### HEAD
 
 ```text
 === HEAD ===
@@ -104,17 +103,17 @@ Muestra las primeras filas del dataset.
 
 ---
 
-### Nulls
+### NULLS
 
 ```text
 === NULLS ===
 ```
 
-Permite verificar valores faltantes.
+Permite identificar valores faltantes.
 
 ---
 
-### Describe
+### DESCRIBE
 
 ```text
 === DESCRIBE ===
@@ -133,50 +132,30 @@ Muestra:
 
 ---
 
-### Frecuencias
+### FRECUENCIAS
 
 ```text
 === FRECUENCIAS ===
 ```
 
-Frecuencia de:
+Frecuencias de variables categóricas.
 
-* nivel_edu
-* sex
+En el video se observan:
+
+```text
+nivel_edu
+sex
+```
 
 ---
 
-### Histogramas
+### HISTOGRAMAS
 
 ```text
 === HISTOGRAMA ===
 ```
 
-Variables:
-
-* edad
-* ingreso_mensual
-* anios_esc
-
----
-
-### Correlación
-
-```text
-=== CORRELACION ===
-```
-
-Correlación de Pearson entre variables numéricas.
-
----
-
-### Subconjunto
-
-```text
-=== SUBCONJUNTO ===
-```
-
-Variables:
+Variables observadas:
 
 ```text
 edad
@@ -186,7 +165,57 @@ anios_esc
 
 ---
 
-# 5. Ejecutar gráficas
+### CORRELACIÓN
+
+```text
+=== CORRELACION ===
+```
+
+Correlación entre variables numéricas.
+
+---
+
+### SUBCONJUNTO
+
+```text
+=== SUBCONJUNTO ===
+```
+
+Variables observadas:
+
+```text
+edad
+ingreso_mensual
+anios_esc
+```
+
+---
+
+### BOXPLOTS
+
+El script genera:
+
+```text
+kboxplot_all(...)
+```
+
+y boxplots individuales para:
+
+```text
+edad
+ingreso_mensual
+anios_esc
+```
+
+Permiten identificar:
+
+* Outliers
+* Dispersión
+* Rango intercuartílico
+
+---
+
+# 5. Ejecutar Gráficas
 
 ```bash
 python3 main.py scripts/graficas_data.kr
@@ -198,13 +227,13 @@ python3 main.py scripts/graficas_data.kr
 
 ### Distribución de Edad
 
-Debe aparecer una gráfica ASCII de edad.
+Gráfica ASCII de la variable edad.
 
 ---
 
 ### Distribución de Ingreso
 
-Debe aparecer una gráfica ASCII de ingreso mensual.
+Gráfica ASCII de la variable ingreso mensual.
 
 ---
 
@@ -216,7 +245,7 @@ Debe aparecer una gráfica similar a:
 Ingreso Promedio por Años de Escolaridad
 ```
 
-donde:
+Donde:
 
 * Eje X = años de escolaridad
 * Eje Y = ingreso promedio
@@ -237,7 +266,7 @@ python3 main.py scripts/eda_data.kr
 python3 main.py scripts/graficas_data.kr
 ```
 
-Si ambos comandos funcionan correctamente, el módulo de análisis exploratorio mostrado en el video quedó validado.
+Si ambos comandos ejecutan correctamente y generan resultados similares a los mostrados en el video, el módulo EDA queda validado.
 
 ---
 
@@ -249,7 +278,7 @@ Si ambos comandos funcionan correctamente, el módulo de análisis exploratorio 
 * ¿Cuántas columnas tiene?
 * ¿Qué representa cada variable?
 * ¿Existen valores nulos?
-* ¿Cuál variable tiene mayor dispersión?
+* ¿Qué variable tiene mayor dispersión?
 
 ---
 
@@ -270,9 +299,9 @@ Si ambos comandos funcionan correctamente, el módulo de análisis exploratorio 
 
 ---
 
-## Dataset utilizado
+# Variables que deben conocerse
 
-Variables observadas:
+Variables observadas en la demostración:
 
 ```text
 id
@@ -283,7 +312,7 @@ sex
 anios_esc
 ```
 
-Variables clave para explicar:
+Variables principales para explicar:
 
 ```text
 edad
@@ -291,4 +320,29 @@ ingreso_mensual
 anios_esc
 ```
 
-porque son las que aparecen en histogramas, correlaciones y gráficas.
+porque aparecen en:
+
+* Histogramas
+* Correlaciones
+* Boxplots
+* Gráficas finales
+
+---
+
+# Comprobación final
+
+Antes de la sustentación ejecutar:
+
+```bash
+cd ~/KRYPTO-Proyecto_final
+
+source .venv/bin/activate
+
+ls scripts
+
+python3 main.py scripts/eda_data.kr
+
+python3 main.py scripts/graficas_data.kr
+```
+
+Si estos comandos funcionan correctamente en Ubuntu, estarás reproduciendo el mismo flujo mostrado en la demostración observada.
