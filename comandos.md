@@ -1,8 +1,4 @@
-# Guía de Ejecución EDA y Gráficas - KRYPTO
-
-## Objetivo
-
-Ejecutar el análisis exploratorio de datos (EDA) y las gráficas utilizadas en la demostración del proyecto KRYPTO.
+# Guía de Ejecución KRYPTO
 
 ---
 
