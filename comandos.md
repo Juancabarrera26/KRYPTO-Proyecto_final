@@ -1,5 +1,20 @@
 # Guía de Ejecución KRYPTO
 
+```bash
+cd KRYPTO-Proyecto_final
+
+python3 -m venv .venv
+
+source .venv/bin/activate
+
+pip install antlr4-python3-runtime==4.13.1
+
+python3 main.py scripts/test_all.kr
+
+python3 main.py scripts/eda_data.kr
+
+python3 main.py scripts/graficas_data.kr
+```
 ---
 
 # 1. Entrar al proyecto
