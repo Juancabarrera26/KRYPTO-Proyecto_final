@@ -1,6 +1,12 @@
-# EDA - Ejecución y Validación para la Sustentación
+# Guía de Ejecución EDA y Gráficas - KRYPTO
 
-## 1. Entrar al proyecto
+## Objetivo
+
+Ejecutar el análisis exploratorio de datos (EDA) y las gráficas del dataset para la sustentación.
+
+---
+
+# 1. Entrar al proyecto
 
 ```bash
 cd ~/KRYPTO-Proyecto_final
@@ -8,38 +14,44 @@ cd ~/KRYPTO-Proyecto_final
 
 ---
 
-## 2. Activar entorno virtual
+# 2. Activar entorno virtual
 
 ```bash
 source .venv/bin/activate
 ```
 
-Si no existe:
+Verificar que aparezca algo similar a:
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
+```text
+(.venv) usuario@ubuntu:~/KRYPTO-Proyecto_final$
 ```
 
 ---
 
-## 3. Verificar archivos necesarios
+# 3. Verificar archivos disponibles
 
 ```bash
 ls scripts
 ```
 
-Debe existir:
+Debe aparecer algo parecido a:
 
 ```text
 data.csv
 data.xlsx
 eda_data.kr
+graficas_data.kr
+output.txt
+test_all.kr
+test_dl.kr
+test_math.kr
+test_matrices.kr
+test_ml_graf.kr
 ```
 
 ---
 
-## 4. Ejecutar Análisis Exploratorio Completo
+# 4. Ejecutar Análisis Exploratorio Completo (EDA)
 
 ```bash
 python3 main.py scripts/eda_data.kr
@@ -47,185 +59,236 @@ python3 main.py scripts/eda_data.kr
 
 ---
 
-# Resultados que deben aparecer
+## Salidas esperadas
 
-## 1. Shape
+### Shape
 
 ```text
-SHAPE
+=== SHAPE ===
+(10280, 6)
 ```
 
-Permite conocer:
+Muestra:
 
 * Número de filas
 * Número de columnas
 
 ---
 
-## 2. Columns
+### Columns
 
 ```text
-COLUMNS
+=== COLUMNS ===
 ```
 
-Permite conocer:
+Variables del dataset:
 
-* Variables disponibles
-* Nombres de columnas
+```text
+id
+edad
+nivel_edu
+ingreso_mensual
+sex
+anios_esc
+```
 
 ---
 
-## 3. Head
+### Head
 
 ```text
-HEAD
+=== HEAD ===
+```
+
+Muestra las primeras filas del dataset.
+
+---
+
+### Nulls
+
+```text
+=== NULLS ===
+```
+
+Permite verificar valores faltantes.
+
+---
+
+### Describe
+
+```text
+=== DESCRIBE ===
 ```
 
 Muestra:
 
-* Primeros registros
-* Estructura del dataset
+* count
+* mean
+* std
+* min
+* Q1
+* median
+* Q3
+* max
 
 ---
 
-## 4. Nulls
+### Frecuencias
 
 ```text
-NULLS
+=== FRECUENCIAS ===
 ```
 
-Permite identificar:
+Frecuencia de:
 
-* Valores faltantes
-* Calidad de datos
+* nivel_edu
+* sex
 
 ---
 
-## 5. Describe
+### Histogramas
 
 ```text
-DESCRIBE
+=== HISTOGRAMA ===
 ```
 
-Estadísticas descriptivas:
+Variables:
 
-* Media
-* Mediana
-* Mínimo
-* Máximo
-* Desviación estándar
+* edad
+* ingreso_mensual
+* anios_esc
 
 ---
 
-## 6. Frecuencias
+### Correlación
 
 ```text
-FRECUENCIAS
+=== CORRELACION ===
 ```
 
-Permite analizar:
-
-* Variables categóricas
-* Distribución de categorías
+Correlación de Pearson entre variables numéricas.
 
 ---
 
-## 7. Histogramas
+### Subconjunto
 
 ```text
-HISTOGRAMA
+=== SUBCONJUNTO ===
 ```
 
-Permite analizar:
-
-* Distribución de variables
-* Concentración de datos
-* Posibles sesgos
-
----
-
-## 8. Correlación
-
-```text
-CORRELACION
-```
-
-Permite identificar:
-
-* Relaciones entre variables
-* Dependencias positivas
-* Dependencias negativas
-
----
-
-## 9. Boxplots
-
-```text
-BOXPLOT
-```
-
-Permite identificar:
-
-* Outliers
-* Dispersión
-* Rango intercuartílico
-
----
-
-# Variables que se deben conocer
-
-Antes de la sustentación revisar:
+Variables:
 
 ```text
 edad
-sexo
 ingreso_mensual
-anos_esc
+anios_esc
 ```
 
-o las variables reales que aparezcan en:
+---
+
+# 5. Ejecutar gráficas
+
+```bash
+python3 main.py scripts/graficas_data.kr
+```
+
+---
+
+## Gráficas esperadas
+
+### Distribución de Edad
+
+Debe aparecer una gráfica ASCII de edad.
+
+---
+
+### Distribución de Ingreso
+
+Debe aparecer una gráfica ASCII de ingreso mensual.
+
+---
+
+### Ingreso Promedio por Años de Escolaridad
+
+Debe aparecer una gráfica similar a:
 
 ```text
-COLUMNS
+Ingreso Promedio por Años de Escolaridad
 ```
 
-Debe conocerse:
+donde:
 
-* Qué representa cada variable
-* Tipo de dato
-* Rango de valores
-* Posibles outliers
+* Eje X = años de escolaridad
+* Eje Y = ingreso promedio
 
 ---
 
-# Comandos de Validación Adicional
+# Verificación rápida antes de la sustentación
 
-## Machine Learning
+Ejecutar:
 
 ```bash
-python3 main.py scripts/test_ml_graf.kr
+cd ~/KRYPTO-Proyecto_final
+
+source .venv/bin/activate
+
+python3 main.py scripts/eda_data.kr
+
+python3 main.py scripts/graficas_data.kr
 ```
 
-Valida:
-
-* Regresión Lineal
-* Regresión Logística
-* KNN
-* KMeans
+Si ambos comandos funcionan correctamente, el módulo de análisis exploratorio mostrado en el video quedó validado.
 
 ---
 
-## Deep Learning
+# Posibles preguntas del profesor
 
-```bash
-python3 main.py scripts/test_dl.kr
+## Dataset
+
+* ¿Cuántas filas tiene el dataset?
+* ¿Cuántas columnas tiene?
+* ¿Qué representa cada variable?
+* ¿Existen valores nulos?
+* ¿Cuál variable tiene mayor dispersión?
+
+---
+
+## Estadística
+
+* ¿Qué representa la media?
+* ¿Qué representa la mediana?
+* ¿Qué representa la desviación estándar?
+* ¿Qué información aporta un boxplot?
+
+---
+
+## Correlación
+
+* ¿Qué es una correlación positiva?
+* ¿Qué es una correlación negativa?
+* ¿Qué significa una correlación cercana a cero?
+
+---
+
+## Dataset utilizado
+
+Variables observadas:
+
+```text
+id
+edad
+nivel_edu
+ingreso_mensual
+sex
+anios_esc
 ```
 
-Valida:
+Variables clave para explicar:
 
-* Redes neuronales
-* Forward Propagation
-* Backpropagation
+```text
+edad
+ingreso_mensual
+anios_esc
+```
 
-```
-```
+porque son las que aparecen en histogramas, correlaciones y gráficas.
