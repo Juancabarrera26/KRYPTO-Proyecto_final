@@ -47,8 +47,8 @@ sudo apt install python3 python3-pip python3-venv default-jre -y
 ### Opción 1 — Instalación nativa
 
 ```
-git clone https://github.com/SebastianAcosta2006/KRYPTO-2
-cd KRYPTO-2
+git clone https://github.com/Juancabarrera26/KRYPTO-Proyecto_final.git
+cd KRYPTO-Proyecto_final
 pip install antlr4-python3-runtime==4.13.1
 python3 main.py scripts/test_all.kr
 ```
@@ -58,8 +58,8 @@ python3 main.py scripts/test_all.kr
 Aísla la dependencia del sistema. No requiere permisos de administrador.
 
 ```
-git clone https://github.com/SebastianAcosta2006/KRYPTO-2
-cd KRYPTO-2
+git clone https://github.com/Juancabarrera26/KRYPTO-Proyecto_final.git
+cd KRYPTO-Proyecto_final
 
 python3 -m venv .venv
 source .venv/bin/activate
