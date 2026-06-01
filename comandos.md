@@ -263,7 +263,7 @@ Donde:
 
 ---
 
-# Verificación rápida antes de la sustentación
+# verificación 
 
 Ejecutar:
 
